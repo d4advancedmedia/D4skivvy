@@ -233,39 +233,6 @@
 
 	} add_shortcode( 'bucket', 'shortcode_bucket' );
 
-// Slideshow shortcode
-	add_shortcode('slideshow','shortcode_slideshow');
-	add_shortcode('slide','shortcode_slide');
-	function shortcode_slideshow( $atts, $content = null ) {
-			wp_enqueue_script('jcycle2');
-			extract( shortcode_atts( array(
-				'time' => '4000'
-			), $atts ) );
-			$output = '<div class="cycle-slideshow" style="position:relative;" data-cycle-slides=".cycle-slide" data-timeout="' . $time . '" >';
-				$output .= do_shortcode($content);
-			$output .= '</div>';
-			return $output;
-
-	}
-	function shortcode_slide( $atts, $content = null ) {
-		extract( shortcode_atts( array(
-			'img' => '',
-			'style' => ''
-		), $atts ) );
-		// SLIDE
-		if ( $img != '' ) {
-			$background_image = 'background-image:url(\'' . $img . '\');';
-		}
-
-		$output = '<div class="cycle-slide slide-' . get_the_ID() . '" style="position:absolute;' . $background_image . ' ' . $style .'">';
-			$output .= '<div class="cycle-content">';
-				$output .= '<div class="page-wrapper">';
-					$output .= apply_filters( 'the_content' , $content);
-				$output .= '</div>';
-			$output .= '</div>';
-		$output .= '</div>';
-		return $output;
-	} 
 
 // Use: [blogfeed show="5" class="" length="55" morelink="Read More" alllink="See All Posts"]
 	function shortcode_blogfeed( $atts ) {
