@@ -5,10 +5,7 @@
 	echo (
 			'<meta charset="'. get_bloginfo( 'charset' ).'">'.
 			'<meta content="' . get_bloginfo( 'description', 'display' ) . '" name="description">'. // Meta description, important for SEO. Defaults to blog's description.
-			'<meta content="width=device-width, initial-scale=1.0" name="viewport">'. // Sets default width and scale to be dependent on the device.
-			'<link rel="shortcut icon" type="image/png" href="' . get_stylesheet_directory_uri() . '/img/favicon.png?v=1">'.
-		#	'<link rel="apple-touch-icon" href="' . get_stylesheet_directory_uri() . '/apple-touch-icon.png">'.
-
+			
 
 		// Paste Google Fonts here
 			"<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>"
@@ -33,12 +30,14 @@
 			// Main Menu
 				'<nav role="navigation" class="dont-print">'.
 						wp_nav_menu( array(
-							'container'       => false,
-							'menu_class'      => 'alignright nobull dropdown animated flyoutright', // Menu functionality classes
+							//'container'       => false,
+							'menu_class'      => 'alignright nobull dropdown animated flyoutleft', // Menu functionality classes
 							'menu_id'         => 'main-menu',
 							'theme_location'  => 'main',
 							'depth'           => 3, // 0 = all. Default, -1 = displays links at any depth and arranges them in a single, flat list.
-							'echo'            => false
+							'echo'            => false,
+							'walker'          => new skivvy_walker_main
+
 						)).
 
 					'<div class="clear"></div>'.
