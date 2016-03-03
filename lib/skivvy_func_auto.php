@@ -1,41 +1,18 @@
-<?php #16Jun14
-/*
- *		-------------------------------------------------------
- *		Auto Functions
- *		-------------------------------------------------------
- */
+<?php #10Nov15
 
-// Skivvy Body Classes
-	function skivvy_body_classes($classes) {
-		global $wpdb, $post;
-
-		// .subpage for all non-front_page
-			if ( ! is_front_page() ) {
-				$classes[] = 'subpage';
-			}
-
-		// page classes
-		if (is_page()) {
-
-			// .section-{$parentpage} - Parent Page Post class -- Add the top level parent page to the body class
-				if ($post->post_parent) {
-					$parent  = end(get_post_ancestors($current_page_id));
-				} else {
-					$parent = $post->ID;
-				}
-				$post_data = get_post($parent, ARRAY_A);
-				$classes[] = 'section-' . $post_data['post_name'];
-
+//// ---- Add featured images to RSS feed ---- ////
+	function rss_post_thumbnail($content) {
+		global $post;
+		if(has_post_thumbnail($post->ID)) {
+			$content = '<p>' . get_the_post_thumbnail($post->ID) .'</p>' . get_the_content();
 		}
-
-		return $classes;
-
+		return $content;
 	}
-	add_filter('body_class','skivvy_body_classes');
+	add_filter('the_excerpt_rss', 'rss_post_thumbnail');
+	add_filter('the_content_feed', 'rss_post_thumbnail');
 
-
-
-function html_classes( $class = array() ) {
+// HTML Class hook
+	function html_classes( $class = array() ) {
 
 	$classes = array();
 
@@ -65,21 +42,6 @@ function html_classes( $class = array() ) {
 
 
 
-//// ---- Add featured images to RSS feed ---- ////
-	function rss_post_thumbnail($content) {
-		global $post;
-		if(has_post_thumbnail($post->ID)) {
-			$content = '<p>' . get_the_post_thumbnail($post->ID) .'</p>' . get_the_content();
-		}
-		return $content;
-	}
-	add_filter('the_excerpt_rss', 'rss_post_thumbnail');
-	add_filter('the_content_feed', 'rss_post_thumbnail');
-
-
-
-
-/*
 //// ---- Advanced Menu Styling Classes ---- ////
 	if( class_exists( 'SimpleXMLElement' ) ) {
 		// Cleans up and counts number of menu items
@@ -322,7 +284,6 @@ function html_classes( $class = array() ) {
 		}
 	}
 		*/
-}
-add_filter('html_classes','css_browser_selector', 10 );
+} add_filter('html_classes','css_browser_selector', 10 );
 
 ?>
