@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="<?php if (function_exists('html_classes')){ html_classes(); } ?>">
-<head><?php
-
-	echo (
-			'<meta charset="'. get_bloginfo( 'charset' ).'">'.
-			'<meta name="description" content="' . get_bloginfo( 'description', 'display' ) . '">'. // Meta description, important for SEO. Defaults to blog's description.
-			
-
-		// Paste Google Fonts here
-			"<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>"
-
-	);
-
-	wp_head();
-?></head>
+<head><?php wp_head(); ?></head>
 <body id="page-<?php the_ID(); ?>" <?php body_class(); ?>>
 <header role="banner" id="header">
 	<div class="page-wrapper"><?php

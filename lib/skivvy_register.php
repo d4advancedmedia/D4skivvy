@@ -1,10 +1,10 @@
 <?php #03Mar16
 //		Menu
 //		Javascripts & Styles
-//		<html> classes
-//		<body> classes
 //		wp_head() hooks
 //		wp_foot() hooks
+//		<html> classes
+//		<body> classes
 //		Widgets Area
 //		Theme Setup
 
@@ -27,17 +27,46 @@
 			wp_register_script( 'skivvy-custom', get_stylesheet_directory_uri(). '/js/custom.js', array('jquery'), '1', true );
 
 		// STYLES - wp_register_style( $handle, $src, $deps, $ver, $media );
-			wp_register_style( 'skivvy-func',  get_template_directory_uri() . '/css/func.css', false, '06NOV15', 'all');
-			wp_register_style( 'skivvy-print', get_template_directory_uri() . '/css/print.css', array('skivvy-func'), '06NOV15', 'print');
+			wp_register_style( 'skivvy-func',  get_template_directory_uri() . '/css/func.css', false, '04Mar16', 'all');
 			wp_register_style( 'skivvy-style', get_template_directory_uri() . '/style.css', array('skivvy-func'), '1', 'all');
 
 		// ENQUEUE
 			// NOTE: Comment out here if undesired.
 				wp_enqueue_script('skivvy-custom');
-				wp_enqueue_style ('skivvy-print');
 				wp_enqueue_style ('skivvy-style');
 
 	} add_action('wp_enqueue_scripts', 'skivvy_scriptnstyle_enqueuer');
+
+
+
+
+//  WP_HEAD()
+
+	function skivvy_head() {
+		$head_meta = array(
+			'<meta charset="'. get_bloginfo( 'charset' ). '">',
+			'<meta name="description" content="'. get_bloginfo( 'description', 'display' ). '">',
+
+		#	'<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">', // Force IE to render most recent engine for installed browser. And enable Chrome Frame
+			'<meta content="width=device-width, initial-scale=1.0" name="viewport">', // Sets default width and scale to be dependent on the device.
+			'<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">', // Don't autodetect phonenumbers and create links in iphone safari & blackberry
+			'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->', // HTML5 Shiv for < IE9
+
+		#	'<link rel="profile" href="http://gmpg.org/xfn/11">',
+		);
+
+		foreach ($head_meta as $meta) {
+			echo $meta. "\r\n";
+		}
+	} add_action( 'wp_head', 'skivvy_head', 0 );
+
+
+//  WP_FOOT()
+/*
+	function skivvy_foot() {
+
+
+	} add_action( 'wp_footer', 'skivvy_foot' ); //*/
 
 
 
@@ -79,31 +108,6 @@
 		return $classes;
 
 	} add_filter('body_class','skivvy_body_classes');
-
-
-//  WP_HEAD()
-
-	function skivvy_head() {
-		echo (
-			'<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">' // Force IE to render most recent engine for installed browser. And enable Chrome Frame
-			.'<meta content="width=device-width, initial-scale=1.0" name="viewport">' // Sets default width and scale to be dependent on the device.
-		#	.'<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">' // Don't autodetect phonenumbers and create links in iphone safari & blackberry
-		#	.'<link rel="profile" href="http://gmpg.org/xfn/11">'
-
-			.'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->' // HTML5 Shiv for < IE9
-
-		);
-	} add_action( 'wp_head', 'skivvy_head' );
-
-
-//  WP_FOOT()
-/*
-	function skivvy_foot() {
-
-
-	} add_action( 'wp_footer', 'skivvy_foot' ); //*/
-
-
 
 
 // REGISTER - Widget Areas
