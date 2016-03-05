@@ -24,10 +24,10 @@
 					'<img src="' . get_stylesheet_directory_uri() . '/img/logo.png" alt="' . esc_attr( get_bloginfo( 'name', 'display' ) ) . '">' .
 				'</a>'.
 
-			// Mobile Toggle
-				'<button id="mobile-toggle" class="alignright dont-print"></button>'.
 
 			// Main Menu
+				'<a href="#content" class="screenreader">Skip to content</a>'.
+				'<button id="mobile-toggle" class="alignright dont-print"></button>'.
 				'<nav role="navigation" class="dont-print">'.
 						wp_nav_menu( array(
 							'container'       => false,
