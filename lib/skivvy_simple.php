@@ -13,6 +13,11 @@
 		remove_action('wp_head', 'feed_links', 2);						// <link rel="alternate" type="application/rss+xml" title="Skivvy » Feed" href="http://url.com/feed/"> | Works with Add_theme_support('automatic-feed-links');
 		remove_action('wp_head', 'feed_links_extra', 3);				// <link rel="alternate" type="application/rss+xml" title="Skivvy » Hello world! Comments Feed" href="http://url.com/hello-world/feed/">
 
+		remove_action( 'wp_head', 'rest_output_link_wp_head' );         // <link rel='https://api.w.org/' href='http://url.com/wp-json/' />
+		remove_action( 'wp_head', 'wp_oembed_add_discovery_links' );
+		remove_action( 'template_redirect', 'rest_output_link_header', 11, 0 );
+
+
 // Disable Emojis - By Ryan Hellyer @ https://geek.hellyer.kiwi/ - License: GPL2
 	function disable_emojis() {
 		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
