@@ -1,5 +1,17 @@
 <?php #10Nov15
 
+
+
+// META Description tag
+	function skivvy_meta_description () {
+
+			echo '<meta name="description" content="'. get_bloginfo( 'description', 'display' ). '">';
+
+	} add_action( 'wp_head', 'skivvy_meta_description', 1 );
+
+
+
+
 //// ---- Add featured images to RSS feed ---- ////
 	function rss_post_thumbnail($content) {
 		global $post;
