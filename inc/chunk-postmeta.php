@@ -2,27 +2,24 @@
 
 
 	// POST AUTHOR
-	
-		/* printf(__('By %2$s ', 'skivvy'),
-			'meta-prep meta-prep-author',
-			sprintf( '<a class="url fn n" href="%1$s" title="%2$s">%3$s</a>',
-				get_author_posts_url( get_the_author_meta( 'ID' ) ),
-				sprintf( esc_attr__( 'View all posts by %s', 'skivvy' ), get_the_author() ),
-				get_the_author()
-				)
+		/*
+		echo (
+			'<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">'.
+				'<span itemprop="name">'.
+					'<a itemprop="url" rel="author" href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'" title="View all posts by '. esc_attr__(get_the_author())'">'.
+						get_the_author().
+					'</a>'.
+				'</span>'.
+			'</span>'
 		); //*/
-
 
 	// POST DATE
-	
-		the_time('F j, Y');
-		/* printf( __('Published %2$s', 'skivvy'),
-				'meta-prep meta-prep-entry-date',
-				sprintf( '<abbr title="%1$s">%2$s</abbr>',
-							esc_attr( get_the_time() ),
-							get_the_date()
-						)
-		); //*/
+		//*
+		echo (
+			'<time itemprop="datePublished" datetime="'.get_the_time( 'Y-m-d\TH:i:sP' ).'">'.
+				get_the_time( get_option('date_format') ) .
+			'<time>'
+		); //*
 
 	// POST CATEGORIES
 		$cats_list = get_the_category_list( ', ' );

@@ -1,4 +1,4 @@
-<h1 class="page-title"><?php
+<h1 class="page-title" itemprop="name headline"><?php
 
 // PAGE & POST TITLE
 	// Protected Post Prefix

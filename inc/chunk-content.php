@@ -13,9 +13,11 @@ if ( have_posts() ) :
 			the_post();
 
 			if ( is_single() )
-					get_template_part( 'inc/chunk' , 'postmeta' );
+				get_template_part( 'inc/chunk' , 'postmeta' );
 
+		echo '<article itemprop="articleBody">';
 			the_content();
+		echo '</article>';
 
 
 	// If Everything else
