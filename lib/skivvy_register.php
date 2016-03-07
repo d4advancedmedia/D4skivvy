@@ -44,15 +44,24 @@
 
 	function skivvy_head() {
 		$head_meta = array(
-			'<meta charset="'. get_bloginfo( 'charset' ). '">',
-			'<meta name="description" content="'. get_bloginfo( 'description', 'display' ). '">',
+		// Standard Meta
+			// HTML character set encoding. NOTE - Needs to be close to the opening HEAD tag
+				'<meta charset="'. get_bloginfo( 'charset' ). '">',
 
-		#	'<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">', // Force IE to render most recent engine for installed browser. And enable Chrome Frame
-			'<meta content="width=device-width, initial-scale=1.0" name="viewport">', // Sets default width and scale to be dependent on the device.
-			'<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">', // Don't autodetect phonenumbers and create links in iphone safari & blackberry
-			'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->', // HTML5 Shiv for < IE9
+		// Mobile Meta
+			// Sets default width and scale to be dependent on the device.
+				'<meta content="width=device-width, initial-scale=1.0" name="viewport">',
+			// Don't autodetect phonenumbers and create links in iphone safari & blackberry
+			#	'<meta name="format-detection" content="telephone=no"><meta http-equiv="x-rim-auto-match" content="none">',
 
-		#	'<link rel="profile" href="http://gmpg.org/xfn/11">',
+		// IE specific
+			// Force IE to render most recent engine for installed browser. And enable Chrome Frame
+				'<!--[if IE]><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><![endif]-->',
+			// HTML5 Shiv for < IE9
+				'<!--[if lt IE 9]><script src="' . get_template_directory_uri() . '/js/html5.js"></script><![endif]-->',
+
+		// WordPress items
+			#	'<link rel="profile" href="http://gmpg.org/xfn/11">',
 		);
 
 		foreach ($head_meta as $meta) {
