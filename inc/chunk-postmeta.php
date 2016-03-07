@@ -29,24 +29,9 @@
 	// POST TAGS
 		$tags_list = get_the_tag_list( '', ', ' );
 			if ( $tags_list ) echo __( ' | Tags:' , 'skivvy' ) . ' ' . $tags_list;
-	
-	// Category, tag, and taxonomy
-	if ( is_category() || is_tag() || is_tax() ) :
-			term_description();
-	/*
-	// Search
-	elseif ( is_search() ) :
-		// Or if search, show Result Search Count
-			$allsearch = &new WP_Query("s=$s&showposts=-1");
-			$key = wp_specialchars($s, 1);
-			$count = $allsearch->post_count;
-			printf( __( '<h2>Showing %1$s  results for: %2$s</h2>', 'skivvy' ), $count , $key );
-			wp_reset_query(); 
-	//*/
-
 
 	// Attachment
-	elseif ( is_attachment() ) :
+	if ( is_attachment() ) {
 
 		if ( wp_attachment_is_image() ) {
 
@@ -61,6 +46,23 @@
 				)
 			);
 		}
+	}
+	
+	// TAXONOMY DESCRIPTION on Tax Archives
+		if ( is_category() || is_tag() || is_tax() ) {
+			term_description();
+		}
+
+	// SEARCH INFO
+		/*
+		if ( is_search() ) {
+			// Or if search, show Result Search Count
+				$allsearch = &new WP_Query("s=$s&showposts=-1");
+				$key = wp_specialchars($s, 1);
+				$count = $allsearch->post_count;
+				printf( __( '<h2>Showing %1$s  results for: %2$s</h2>', 'skivvy' ), $count , $key );
+				wp_reset_query(); 
+		} //*/
 
 
 endif; ?></div>
