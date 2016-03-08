@@ -6,11 +6,12 @@
 		echo (
 			'<span itemprop="author" itemscope="" itemtype="http://schema.org/Person">'.
 				'<span itemprop="name">'.
-					'<a itemprop="url" rel="author" href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'" title="View all posts by '. esc_attr__(get_the_author())'">'.
+					'Written by: ' .
+					'<a itemprop="url" rel="author" href="'.get_author_posts_url( get_the_author_meta( 'ID' ) ).'" title="View all posts by '. esc_attr__(get_the_author()).'">'.
 						get_the_author().
 					'</a>'.
 				'</span>'.
-			'</span>'
+			'</span> '
 		); //*/
 
 	// POST DATE
@@ -18,17 +19,19 @@
 		echo (
 			'<time itemprop="datePublished" datetime="'.get_the_time( 'Y-m-d\TH:i:sP' ).'">'.
 				get_the_time( get_option('date_format') ) .
-			'<time>'
+			'<time> '
 		); //*
 
 	// POST CATEGORIES
 		$cats_list = get_the_category_list( ', ' );
-			if ( $cats_list ) echo __( ' | Category:' , 'skivvy' ). ' ' . $cats_list;
+			if ( $cats_list )
+				echo ( '| Category: ' . $cats_list. ' ');
 
 	
 	// POST TAGS
 		$tags_list = get_the_tag_list( '', ', ' );
-			if ( $tags_list ) echo __( ' | Tags:' , 'skivvy' ) . ' ' . $tags_list;
+			if ( $tags_list )
+				echo ( '| Tags: ' . $tags_list . ' ');
 
 	// Attachment
 	if ( is_attachment() ) {
@@ -37,7 +40,7 @@
 
 			$metadata = wp_get_attachment_metadata();
 
-			printf( __( ' | Full size is %s pixels', 'skivvy'),
+			printf( __( '| Full size is %s pixels ', 'skivvy'),
 				sprintf( '<a href="%1$s" title="%2$s">%3$s &times; %4$s</a>',
 					wp_get_attachment_url(),
 					esc_attr( __('Link to full-size image', 'skivvy') ),
