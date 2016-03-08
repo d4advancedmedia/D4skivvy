@@ -1,14 +1,111 @@
-<?php #10Nov15
-
+<?php #08Mar16
 
 
 // META Description tag
-	function skivvy_meta_description () {
+	function skivvy_meta_description ( $description ) {
 
-			echo '<meta name="description" content="'. get_bloginfo( 'description', 'display' ). '">';
+		global $post;
+
+	// if main blog archive
+		if ( is_home() ) :
+			$postspage   = get_post(get_option('page_for_posts'));
+			$postcontent = $postpage->post_content;
+			if ( ! empty($postcontent) ) {
+				$description = $postcontent;
+			} else {
+				$description = get_bloginfo( 'description', 'display' );
+			}
+
+	// if post type archive
+		elseif ( is_post_type_archive() ) :
+			$description = get_bloginfo( 'description', 'display' );
+
+	// if day/month/year archive
+		elseif ( is_day() || is_month() || is_year() ) :
+			$description = get_bloginfo( 'description', 'display' );
+
+	// If sometype of taxonomy
+		elseif ( is_tag() || is_tax() || is_category()) :
+			$taxoDescription = term_description();
+			if ( ! empty($taxoDescription) ) {
+				$description = term_description();
+			} else {
+				$description = get_bloginfo( 'description', 'display' );
+			}
+
+	// if Author page
+		elseif ( is_author() ) :
+			$authorDescription = get_the_author_meta('description'); 
+			if ( ! empty($authorDescription)) {
+				$description = $authorDescription;
+			} else {
+				$description = get_bloginfo( 'description', 'display' );
+			}
+
+	// if search archive
+		elseif ( is_search() ) :
+			$description = get_bloginfo( 'description', 'display' );
+
+
+	// All other types of archives - not listed above
+		elseif ( is_archive() ) :
+			$description = get_bloginfo( 'description', 'display' );
+
+
+	// if media attachment
+		elseif ( is_attachment() ) :
+			$description = get_bloginfo( 'description', 'display' );
+
+
+	// if single blogpost
+		elseif ( is_single() ) :
+			if ( ! empty($post->post_excerpt) ) {
+				$description = $post->post_excerpt;
+			} elseif ( ! empty($post->post_content) ) {
+				$description = $post->post_content;
+			} else {
+				$description = get_bloginfo( 'description', 'display' );
+			}
+
+	// If front page
+		elseif ( is_front_page() ) : 
+			$description = get_bloginfo( 'description', 'display' );
+
+	// if subpage
+		elseif ( is_page() ) :
+			if ( ! empty($post->post_content) ) {
+				$description = $post->post_content;
+			} else {
+				$description = get_bloginfo( 'description', 'display' );
+			}
+
+	// if 404
+		elseif ( is_404() ) :
+			$description = get_bloginfo( 'description', 'display' );
+
+	// everything else
+		else :
+			$description = get_bloginfo( 'description', 'display' );
+
+		endif; 
+
+		$description = apply_filters( 'skivvy_meta_description', $description );
+
+		echo '<meta name="description" content="'. $description . '">';
 
 	} add_action( 'wp_head', 'skivvy_meta_description', 1 );
 
+
+	function skivvy_meta_description_sanitize ( $description ) {
+		$description = trim($description);
+		$description = strip_tags($description);
+
+		return $description;
+	} add_filter ( 'skivvy_meta_description', 'skivvy_meta_description_sanitize');
+
+	function skivvy_meta_description_length ( $description ) {
+		return substr( $description, 0, 160 );
+	} add_filter ( 'skivvy_meta_description', 'skivvy_meta_description_length');
 
 
 
