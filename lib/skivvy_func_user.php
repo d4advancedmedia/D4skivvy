@@ -21,7 +21,7 @@ function get_the_snippet( $atts = array() ) {
 	if ( post_password_required() ) {
 		return __( 'There is no excerpt because this is a protected post.' );
 	}
-	if ( has_excerpt(  get_the_ID() ) && $attr['ignoreexcerpt'] != 'false') {
+	if ( has_excerpt( get_the_ID() ) && $attr['ignoreexcerpt'] != 'false') {
 		$text = get_the_excerpt();
 	} else {
 		$text = get_the_content();

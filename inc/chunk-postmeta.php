@@ -50,7 +50,7 @@
 	
 	// TAXONOMY DESCRIPTION on Tax Archives
 		if ( is_category() || is_tag() || is_tax() ) {
-			term_description();
+		#	echo term_description();
 		}
 
 	// SEARCH INFO
