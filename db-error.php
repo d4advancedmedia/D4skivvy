@@ -4,7 +4,7 @@
 
 
 	// Image location
-	$imagelocation="/wp-content/themes/Skivvy/img/logo.png";
+	$imagelocation="/wp-content/themes/D4skivvy-master/img/logo.png";
 
 	// Text copy
 	$sitetitle = 'Database connection error';
