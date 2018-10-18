@@ -70,7 +70,7 @@ function get_the_thumbnail_caption() {
 }
 
 
-if ( ! function_exists( chunkifier ) ) {
+if ( ! function_exists( 'chunkifier' ) ) {
 	function chunkifier ( $atts ) {
 
 		$attr = wp_parse_args( $atts, array(
