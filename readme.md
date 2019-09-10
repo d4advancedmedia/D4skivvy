@@ -5,7 +5,7 @@ The Skivvy Decree
 - Clear and ordered function files
 - Fully flexible
 - Minimilist core
-
+ 
 ----
 
 ## SHORTCODES
