@@ -25,12 +25,12 @@
 
 		// SCRIPTS - wp_register_script( $handle, $src, $deps, $ver, $in_footer );
 			wp_register_script( 'skivvy-custom', get_stylesheet_directory_uri(). '/js/custom.js', array('jquery'), '1', true );
-			wp_register_script( 'skivvy-custom', get_stylesheet_directory_uri(). '/js/wow.min.js', array('jquery'), '1', true );
+			wp_register_script( 'skivvy-wow', get_stylesheet_directory_uri(). '/js/wow.min.js', array('jquery'), '1', true );
 
 		// STYLES - wp_register_style( $handle, $src, $deps, $ver, $media );
 			wp_register_style( 'skivvy-func',  get_template_directory_uri() . '/css/func.css', false, '4May15', 'all');
 			wp_register_style( 'skivvy-print', get_template_directory_uri() . '/css/print.css', array('skivvy-func'), '4May15', 'print');
-			wp_register_style( 'skivvy-style', get_template_directory_uri() . '/css/animate.css', array('skivvy-func'), '1', 'all');
+			wp_register_style( 'skivvy-animate', get_template_directory_uri() . '/css/animate.css', array('skivvy-func'), '1', 'all');
 			wp_register_style( 'skivvy-style', get_template_directory_uri() . '/style.css', array('skivvy-func'), '1', 'all');
 
 		// ENQUEUE
